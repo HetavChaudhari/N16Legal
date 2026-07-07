@@ -1,0 +1,66 @@
+/* ================================================
+   APPOINTMENT STATUS PAGE — N16 LEGAL
+   ================================================ */
+
+/* ===== CENTER LAYOUT ===== */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* ===== CARD ===== */
+body>div {
+    max-width: 600px;
+    padding: 60px 50px;
+
+    border: 1px solid var(--border);
+    background: var(--navy-mid);
+}
+
+/* ===== SUCCESS TITLE ===== */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+/* GOLD LINE */
+h1::after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    display: block;
+    margin: 12px auto 0;
+}
+
+/* ===== MAIN MESSAGE ===== */
+p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin: 10px 0;
+}
+
+/* SUCCESS TEXT */
+p:first-of-type {
+    color: var(--gold);
+    font-size: 1.3rem;
+}
+
+/* NOTE */
+p span {
+    display: block;
+    margin-top: 20px;
+
+    font-size: 0.95rem;
+    color: #a94442;
+
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+}

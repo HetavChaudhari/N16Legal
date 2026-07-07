@@ -1,0 +1,189 @@
+/* ================================================
+   SECRETARY APPROVED LIST — N16 LEGAL
+   ================================================ */
+
+/* ===== PAGE ===== */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  gap: 40px;
+  align-items: center;
+
+  padding: 20px 60px;
+
+  background: var(--navy-mid);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: var(--cream);
+  text-decoration: none;
+  position: relative;
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: var(--gold);
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: var(--gold);
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* ===== MAIN ===== */
+.main {
+  flex: 1;
+  padding: 60px 80px;
+}
+
+/* TITLE */
+.main h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+.main h1::after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  display: block;
+  margin-top: 10px;
+}
+
+/* ===== APPROVED LIST TABLE STYLE ===== */
+.aprove-list {
+  border: 1px solid var(--border);
+  background: var(--navy-mid);
+}
+
+/* HEADER */
+.approve-row.header {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1fr;
+  padding: 15px 20px;
+
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+
+  color: var(--gold);
+  border-bottom: 1px solid var(--border);
+}
+
+/* DATA ROW */
+.approve-row {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1fr;
+
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* HOVER */
+.approve-row:hover {
+  background: var(--navy-light);
+}
+
+/* NAME */
+.approve-row p:first-child {
+  font-family: 'Playfair Display', serif;
+  color: var(--white);
+}
+
+/* STATUS */
+.status-approved {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+
+  color: #2e8b57;
+  border: 1px solid #2e8b57;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+/* ===== DOWNLOAD BUTTON ===== */
+#dwn {
+  margin-top: 30px;
+
+  padding: 12px 28px;
+
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#dwn:hover {
+  background: var(--gold);
+  color: var(--navy);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.3);
+}
+
+/* ===== EMPTY ===== */
+.empty {
+  text-align: center;
+  padding: 60px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .main {
+    padding: 40px 20px;
+  }
+
+  .approve-row,
+  .approve-row.header {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .status-approved {
+    width: fit-content;
+  }
+}

@@ -1,0 +1,193 @@
+/* ================================================
+   LAWYER CASE DASHBOARD — N16 LEGAL
+   ================================================ */
+
+/* ===== PAGE LAYOUT ===== */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR (REUSE STYLE) ===== */
+.navbar-lawyer {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  gap: 40px;
+  align-items: center;
+
+  padding: 20px 60px;
+
+  background: var(--navy-mid);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-lawyer a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: var(--cream);
+  text-decoration: none;
+
+  position: relative;
+}
+
+.navbar-lawyer a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: var(--gold);
+  transition: 0.3s;
+}
+
+.navbar-lawyer a:hover {
+  color: var(--gold);
+}
+
+.navbar-lawyer a:hover::after {
+  width: 100%;
+}
+
+/* ===== CASE SECTION ===== */
+.cases {
+  flex: 1;
+  padding: 60px 80px;
+}
+
+/* TITLE */
+.cases h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+.cases h1::after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  display: block;
+  margin-top: 10px;
+}
+
+/* ===== CASE CARD ===== */
+.case-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 22px 25px;
+  margin-bottom: 20px;
+
+  border: 1px solid var(--border);
+  background: var(--navy-mid);
+
+  transition: 0.3s;
+}
+
+/* hover */
+.case-card:hover {
+  border-color: var(--gold);
+}
+
+/* LEFT INFO */
+.case-info p {
+  margin: 4px 0;
+  color: var(--text-muted);
+}
+
+/* CASE NAME */
+.case-info p:first-child {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--white);
+}
+
+/* ===== STATUS BADGE ===== */
+.status {
+  padding: 6px 14px;
+  font-size: 0.65rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.15em;
+
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+
+/* STATUS COLORS */
+.status.pending {
+  border-color: #b08900;
+  color: #b08900;
+}
+
+.status.active {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.status.closed {
+  border-color: #2e8b57;
+  color: #2e8b57;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.case-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.case-actions button {
+  padding: 8px 16px;
+
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.case-actions button:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* ===== EMPTY STATE ===== */
+.empty {
+  text-align: center;
+  margin-top: 80px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbar-lawyer {
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .cases {
+    padding: 40px 20px;
+  }
+
+  .case-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}

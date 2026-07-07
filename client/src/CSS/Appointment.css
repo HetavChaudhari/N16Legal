@@ -1,0 +1,207 @@
+/* Appointment.css - Premium Glassmorphism Theme */
+
+.booking-container {
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#appointment {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    color: white;
+}
+
+#appointment .title,
+#appointment .full,
+#appointment .submit,
+#appointment .fee {
+    grid-column: 1 / -1;
+}
+
+#appointment .title h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #e2e8f0, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#appointment .title p {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+#appointment label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+#appointment input[type="text"],
+#appointment input[type="email"],
+#appointment input[type="tel"],
+#appointment input[type="date"],
+#appointment input[type="time"],
+#appointment select,
+#appointment textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#appointment input:focus,
+#appointment select:focus,
+#appointment textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* OTP specific styles */
+.otp-input-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.btn-verify {
+    padding: 0 1.5rem;
+    height: 100%;
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-verify:hover {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+.otp-verify-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.btn-confirm {
+    padding: 0 1.5rem;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.verified-badge {
+    color: #10b981;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.fee {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(59, 130, 246, 0.1);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.fee span {
+    font-size: 1.2rem;
+    color: #cbd5e1;
+}
+
+.fee strong {
+    font-size: 1.5rem;
+    color: #60a5fa;
+}
+
+#opay {
+    padding: 0.75rem 2rem;
+    background: transparent;
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#opay:hover:not(:disabled) {
+    background: #3b82f6;
+    color: white;
+}
+
+#sub {
+    width: 100%;
+    padding: 1.25rem;
+    background: linear-gradient(to right, #2563eb, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 1rem;
+}
+
+#sub:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px rgba(37, 99, 235, 0.8);
+}
+
+#sub.disabled-btn {
+    background: #475569;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #appointment {
+        grid-template-columns: 1fr;
+    }
+}

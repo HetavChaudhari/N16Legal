@@ -1,0 +1,755 @@
+/* ================================================
+   N16 LEGAL — Professional Legal CSS
+   Aesthetic: Dark Luxury / Gold & Deep Navy
+   Fonts: Playfair Display + Cormorant Garamond + Cinzel
+   ================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --navy: #0b0f1a;
+  --navy-mid: #111827;
+  --navy-light: #1a2236;
+  --gold: #c9a84c;
+  --gold-light: #e2c47a;
+  --cream: #f7f3ec;
+  --white: #ffffff;
+  --text-muted: #8a92a3;
+  --border: rgba(201, 168, 76, 0.25);
+  --shadow-gold: 0 4px 32px rgba(201, 168, 76, 0.12);
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light-mode {
+  --navy: #ffffff;
+  --navy-mid: #f9f9f9;
+  --navy-light: #f0f0f0;
+  --gold: #b8944d;
+  --gold-light: #8e733b;
+  --cream: #0b0f1a;
+  --white: #111827;
+  --text-muted: #555555;
+  --border: rgba(184, 148, 77, 0.4);
+  --shadow-gold: 0 4px 32px rgba(184, 148, 77, 0.15);
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--navy);
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Grain texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ================================================
+   NAVBAR
+   ================================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  height: 76px;
+  background: rgba(11, 15, 26, 0.93);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar nav {
+  display: contents;
+}
+
+.navbar p {
+  margin-right: auto;
+}
+
+.navbar p span {
+  font-family: 'Cinzel', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.navbar a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  margin-left: 36px;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width var(--transition);
+}
+
+.navbar a:hover {
+  color: var(--gold-light);
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+#lgn {
+  margin-left: 36px;
+  padding: 9px 26px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: var(--transition);
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+#lgn:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.35);
+}
+
+/* ================================================
+   HERO SHOWCASE
+   ================================================ */
+.hero-showcase {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  padding-top: 76px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-showcase::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+}
+
+.hero-showcase .left {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-showcase .left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(20%) brightness(0.75) contrast(1.1);
+}
+
+.hero-showcase .left::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(11, 15, 26, 0.1), rgba(11, 15, 26, 0.45));
+}
+
+.hero-showcase .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 80px 80px 90px;
+  background: var(--navy);
+  position: relative;
+}
+
+.hero-showcase .right::before {
+  content: '';
+  position: absolute;
+  left: 90px;
+  top: calc(50% - 200px);
+  width: 1px;
+  height: 160px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+}
+
+.hero-showcase .right h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--white);
+  margin-bottom: 28px;
+  animation: fadeUp 0.9s ease both;
+}
+
+.hero-showcase .right p {
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 48px;
+  animation: fadeUp 0.9s 0.15s ease both;
+}
+
+.hero-showcase .right p Span {
+  font-weight: 500;
+  color: var(--gold-light);
+  font-style: normal;
+}
+
+#App {
+  align-self: flex-start;
+  padding: 16px 42px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: color var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.9s 0.3s ease both;
+}
+
+#App::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform var(--transition);
+  z-index: 0;
+}
+
+#App:hover {
+  color: var(--navy);
+  box-shadow: var(--shadow-gold);
+}
+
+#App:hover::before {
+  transform: translateX(0);
+}
+
+#App p,
+#App span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================
+   SERVICES / PRACTICE AREAS
+   ================================================ */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background-color: var(--border);
+  /* gap color = gold border */
+  position: relative;
+}
+
+/* corner ornaments */
+.services::before {
+  content: '';
+  position: absolute;
+  top: 76px;
+  left: 60px;
+  width: 48px;
+  height: 48px;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.services::after {
+  content: '';
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+  width: 48px;
+  height: 48px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* heading spans full 3 cols */
+.services h3 {
+  grid-column: 1 / -1;
+  background: var(--navy-mid);
+  padding: 80px 0 64px;
+  text-align: center;
+  font-size: 0;
+  /* text hidden, shown via pseudo */
+}
+
+.services h3::before {
+  content: 'Practice Areas';
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+
+.services h3::after {
+  content: '— Legal Expertise —';
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* all service cards */
+.services .criminal,
+.services .civil,
+.services .corporate,
+.services .family,
+.services .property,
+.services .document {
+  background: var(--navy-mid);
+  padding: 52px 44px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: background var(--transition);
+}
+
+/* gold sweep line at bottom on hover */
+.services .criminal::before,
+.services .civil::before,
+.services .corporate::before,
+.services .family::before,
+.services .property::before,
+.services .document::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width var(--transition);
+}
+
+.services .criminal:hover,
+.services .civil:hover,
+.services .corporate:hover,
+.services .family:hover,
+.services .property:hover,
+.services .document:hover {
+  background: var(--navy-light);
+}
+
+.services .criminal:hover::before,
+.services .civil:hover::before,
+.services .corporate:hover::before,
+.services .family:hover::before,
+.services .property:hover::before,
+.services .document:hover::before {
+  width: 100%;
+}
+
+/* numbered labels */
+.services .criminal::after {
+  content: '01';
+}
+
+.services .civil::after {
+  content: '02';
+}
+
+.services .corporate::after {
+  content: '03';
+}
+
+.services .family::after {
+  content: '04';
+}
+
+.services .property::after {
+  content: '05';
+}
+
+.services .document::after {
+  content: '06';
+}
+
+.services .criminal::after,
+.services .civil::after,
+.services .corporate::after,
+.services .family::after,
+.services .property::after,
+.services .document::after {
+  position: absolute;
+  top: 44px;
+  right: 44px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: rgba(201, 168, 76, 0.18);
+  transition: color var(--transition);
+}
+
+.services .criminal:hover::after,
+.services .civil:hover::after,
+.services .corporate:hover::after,
+.services .family:hover::after,
+.services .property:hover::after,
+.services .document:hover::after {
+  color: var(--gold);
+}
+
+.services .criminal p,
+.services .civil p,
+.services .corporate p,
+.services .family p,
+.services .property p,
+.services .document p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--cream);
+  transition: color var(--transition);
+}
+
+.services .criminal:hover p,
+.services .civil:hover p,
+.services .corporate:hover p,
+.services .family:hover p,
+.services .property:hover p,
+.services .document:hover p {
+  color: var(--gold-light);
+}
+
+/* ================================================
+   WHY CHOOSE US
+   ================================================ */
+.reason {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 80px 0;
+}
+
+/* Section heading */
+.reason h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.reason h2::after {
+  content: '— Why N16 Legal —';
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  font-weight: 500;
+  margin-top: 12px;
+  margin-bottom: 56px;
+}
+
+/* Cards row — inline-block trick for 3-col without wrapper */
+.reason .first,
+.reason .second,
+.reason .third {
+  display: inline-block;
+  width: calc(33.333% - 1px);
+  vertical-align: top;
+  padding: 60px 48px 72px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.reason .first,
+.reason .second {
+  border-right: 1px solid var(--border);
+}
+
+/* Roman numerals */
+.reason .first::before {
+  content: 'I';
+}
+
+.reason .second::before {
+  content: 'II';
+}
+
+.reason .third::before {
+  content: 'III';
+}
+
+.reason .first::before,
+.reason .second::before,
+.reason .third::before {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  opacity: 0.45;
+  margin-bottom: 22px;
+}
+
+.reason>div p:first-of-type {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.reason>div p:last-of-type {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+.footer {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+}
+
+.footer footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  gap: 48px;
+  padding: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer .left p:first-child {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.footer .left p:last-child {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-style: italic;
+  max-width: 280px;
+}
+
+.footer .center {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer .center p:first-child,
+.footer .right p:first-child {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.footer .center a {
+  font-size: 1rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: var(--transition);
+  width: fit-content;
+}
+
+.footer .center a:hover {
+  color: var(--gold-light);
+  border-color: var(--border);
+  padding-left: 8px;
+}
+
+.footer .right p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* copyright bar */
+.footer::after {
+  content: '© 2025 N16 Legal — Adv. Hetav Chaudhari. All rights reserved.';
+  display: block;
+  text-align: center;
+  padding: 20px 80px;
+  border-top: 1px solid var(--border);
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* ================================================
+   ANIMATIONS
+   ================================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 32px;
+  }
+
+  .hero-showcase {
+    flex-direction: column;
+  }
+
+  .hero-showcase .left {
+    height: 45vh;
+    flex: none;
+  }
+
+  .hero-showcase::after {
+    display: none;
+  }
+
+  .hero-showcase .right {
+    flex: none;
+    padding: 60px 40px;
+  }
+
+  .hero-showcase .right::before {
+    display: none;
+  }
+
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reason {
+    padding: 60px 32px 0;
+  }
+
+  .reason .first,
+  .reason .second,
+  .reason .third {
+    display: block;
+    width: 100%;
+    border-right: none;
+  }
+
+  .reason .first,
+  .reason .second {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .footer footer {
+    grid-template-columns: 1fr 1fr;
+    padding: 60px 32px;
+    gap: 40px;
+  }
+
+  .footer .left {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .navbar a {
+    display: none;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+  }
+
+  .footer footer {
+    grid-template-columns: 1fr;
+  }
+
+  .footer .left {
+    grid-column: auto;
+  }
+}

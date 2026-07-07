@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Environment variables (never commit secrets)
+.env
+*.env
+!.env.example
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local design assets (not part of the app)
+Asstes/

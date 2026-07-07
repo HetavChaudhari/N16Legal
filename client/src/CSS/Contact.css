@@ -1,0 +1,112 @@
+/* ================================================
+   CONTACT PAGE — N16 LEGAL (MATCHED SYSTEM)
+   ================================================ */
+
+/* ===== MAIN LAYOUT ===== */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  min-height: 100vh;
+
+  padding-top: 76px; /* navbar space */
+}
+
+/* ===== LEFT SIDE ===== */
+.contact-content .left {
+  padding: 80px;
+  border-right: 1px solid var(--border);
+  background: var(--navy);
+}
+
+/* TITLE */
+.title-contact h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.title-contact p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+/* INFO BLOCKS */
+.info-contact > div {
+  margin-bottom: 40px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--border);
+}
+
+.info-contact > div:last-child {
+  border-bottom: none;
+}
+
+/* HEADINGS */
+.info-contact h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+/* TEXT */
+.info-contact p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin: 4px 0;
+}
+
+/* CLOSED STYLE */
+.info-contact span {
+  color: #d9534f;
+}
+
+/* ===== RIGHT SIDE (MAP) ===== */
+.contact-content .right {
+  position: relative;
+}
+
+/* MAP STYLE */
+.contact-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(100%) contrast(1.1) brightness(0.8);
+}
+
+/* overlay effect for luxury feel */
+.contact-content .right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 15, 26, 0.25);
+  pointer-events: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-content .left {
+    padding: 60px 40px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-content iframe {
+    height: 400px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-content .left {
+    padding: 50px 20px;
+  }
+}

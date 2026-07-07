@@ -1,0 +1,201 @@
+/* ================================================
+   ABOUT PAGE — N16 LEGAL (MATCHED WITH INDEX.CSS)
+   ================================================ */
+
+/* ===== TEAM INTRO ===== */
+.team {
+  padding: 140px 80px 80px;
+  text-align: center;
+  position: relative;
+}
+
+.team p:first-child {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.team h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.team p {
+  max-width: 850px;
+  margin: 10px auto;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* subtle divider */
+.team::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  margin: 40px auto 0;
+  opacity: 0.6;
+}
+
+/* ===== LAWYERS SECTION ===== */
+.lawyers {
+  padding: 80px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.lawyers h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--white);
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.lawyers h2::after {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  display: block;
+  margin: 15px auto 0;
+}
+
+/* ===== LAWYER CARD ===== */
+.lawyer-1,
+.lawyer-2,
+.lawyer-3,
+.lawyer-4 {
+  display: flex;
+  gap: 40px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+/* numbering */
+.lawyer-1::before { content: '01'; }
+.lawyer-2::before { content: '02'; }
+.lawyer-3::before { content: '03'; }
+.lawyer-4::before { content: '04'; }
+
+.lawyer-1::before,
+.lawyer-2::before,
+.lawyer-3::before,
+.lawyer-4::before {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: rgba(201,168,76,0.25);
+}
+
+/* image */
+.lawyers .left img {
+  width: 200px;
+  height: 240px;
+  object-fit: cover;
+  filter: grayscale(20%) brightness(0.9);
+}
+
+/* content */
+.lawyers .right p:first-child {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.lawyers .right p:nth-child(2) {
+  color: var(--gold);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.lawyers .right p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* quote style */
+.lawyers .right p:nth-child(4) {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+/* ===== FIRM VALUES ===== */
+.firm {
+  padding: 100px 80px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.firm h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--white);
+  margin-bottom: 60px;
+}
+
+.firm > div {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.firm > div:last-child {
+  border-bottom: none;
+}
+
+.firm p:first-child {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.firm p:last-child {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .team {
+    padding: 120px 40px 60px;
+  }
+
+  .lawyers {
+    padding: 60px 40px;
+  }
+
+  .firm {
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lawyer-1,
+  .lawyer-2,
+  .lawyer-3,
+  .lawyer-4 {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .lawyers .left img {
+    margin: auto;
+  }
+}

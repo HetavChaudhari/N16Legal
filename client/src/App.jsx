@@ -14,6 +14,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ClientDashboard from './pages/dashboards/ClientDashboard';
 import LawyerDashboard from './pages/dashboards/LawyerDashboard';
 import AdminDashboard from './pages/dashboards/AdminDashboard';
+import ReceptionistDashboard from './pages/dashboards/ReceptionistDashboard';
 
 function App() {
   return (
@@ -37,6 +38,10 @@ function App() {
 
           <Route element={<ProtectedRoute allowedRoles={['lawyer', 'admin']} />}>
              <Route path="dashboard/lawyer" element={<LawyerDashboard />} />
+          </Route>
+
+          <Route element={<ProtectedRoute allowedRoles={['receptionist', 'admin']} />}>
+             <Route path="dashboard/receptionist" element={<ReceptionistDashboard />} />
           </Route>
 
           <Route element={<ProtectedRoute allowedRoles={['admin']} />}>

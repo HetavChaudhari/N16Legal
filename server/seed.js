@@ -11,7 +11,7 @@ const seedData = async () => {
         console.log('MongoDB Connected');
 
         // Clear existing test users
-        await User.deleteMany({ email: { $in: ['admin@n16legal.com', 'lawyer@n16legal.com', 'client@n16legal.com'] } });
+        await User.deleteMany({ email: { $in: ['admin@n16legal.com', 'lawyer@n16legal.com', 'client@n16legal.com', 'receptionist@n16legal.com'] } });
 
         // Admin User
         const admin = await User.create({
@@ -39,6 +39,15 @@ const seedData = async () => {
             education: 'Harvard Law School',
             consultationFee: 150,
             verified: true
+        });
+
+        // Receptionist User
+        await User.create({
+            name: 'Rita Front-Desk (Receptionist)',
+            email: 'receptionist@n16legal.com',
+            password: 'password123',
+            role: 'receptionist',
+            phone: '5556667777'
         });
 
         // Client User

@@ -17,5 +17,16 @@ export default defineConfig([
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
+    rules: {
+      // Allow unused imports of components/constants (e.g. `React`) and unused catch params
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', caughtErrors: 'none' }],
+      // fetch-on-mount (async setState after await) is idiomatic; this rule flags it too eagerly
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
+  {
+    // Context files intentionally export both a context and its provider component
+    files: ['**/context/**'],
+    rules: { 'react-refresh/only-export-components': 'off' },
   },
 ])

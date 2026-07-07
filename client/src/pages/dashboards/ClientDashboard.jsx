@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
+import StatusBadge from '../../components/StatusBadge';
+import NotificationBell from '../../components/NotificationBell';
+import { STATUSES, isTerminal } from '../../utils/status';
 import '../../CSS/Dashboard.css';
 
 const ClientDashboard = () => {
@@ -9,10 +12,6 @@ const ClientDashboard = () => {
     const [appointments, setAppointments] = useState([]);
     const [reviewingId, setReviewingId] = useState(null);
     const [reviewData, setReviewData] = useState({ rating: 5, comment: '' });
-
-    useEffect(() => {
-        fetchAppointments();
-    }, []);
 
     const fetchAppointments = async () => {
         try {
@@ -22,6 +21,10 @@ const ClientDashboard = () => {
             toast.error('Failed to load appointments');
         }
     };
+
+    useEffect(() => {
+        fetchAppointments();
+    }, []);
 
     const submitReview = async (lawyerId) => {
         try {
@@ -34,9 +37,9 @@ const ClientDashboard = () => {
         }
     };
 
-    const pendingCount = appointments.filter(a => a.status === 'Pending').length;
-    const completedCount = appointments.filter(a => a.status === 'Completed').length;
-    const activeCount = appointments.filter(a => a.status === 'Approved').length;
+    const pendingCount = appointments.filter(a => !isTerminal(a.status) && a.status !== STATUSES.CONFIRMED).length;
+    const completedCount = appointments.filter(a => a.status === STATUSES.COMPLETED).length;
+    const activeCount = appointments.filter(a => a.status === STATUSES.CONFIRMED).length;
 
     return (
         <div className="dashboard-container">
@@ -44,6 +47,7 @@ const ClientDashboard = () => {
             <div className="dashboard-header">
                 <h1>⚖ Client Dashboard</h1>
                 <div className="header-actions">
+                    <NotificationBell />
                     <button className="btn-outline" onClick={logout}>Logout</button>
                 </div>
             </div>
@@ -118,15 +122,13 @@ const ClientDashboard = () => {
                                                 <br />
                                                 <span style={{ color: '#64748b', fontSize: '0.85rem' }}>{app.time}</span>
                                             </td>
-                                            <td>{app.lawyer?.user?.name || 'Unknown'}</td>
+                                            <td>{app.lawyer?.user?.name || 'To be assigned'}</td>
                                             <td>{app.caseType}</td>
                                             <td>
-                                                <span className={`status-badge status-${app.status.toLowerCase()}`}>
-                                                    {app.status}
-                                                </span>
+                                                <StatusBadge status={app.status} />
                                             </td>
                                             <td>
-                                                {app.status === 'Completed' && reviewingId !== app._id && (
+                                                {app.status === STATUSES.COMPLETED && app.lawyer && reviewingId !== app._id && (
                                                     <button className="action-btn action-btn-verify" onClick={() => setReviewingId(app._id)}>★ Leave Review</button>
                                                 )}
                                                 {reviewingId === app._id && (

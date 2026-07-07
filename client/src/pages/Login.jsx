@@ -13,6 +13,13 @@ const Login = () => {
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const DASHBOARDS = {
+        admin: '/dashboard/admin',
+        lawyer: '/dashboard/lawyer',
+        receptionist: '/dashboard/receptionist',
+        client: '/dashboard/client',
+    };
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -20,9 +27,9 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await login(formData.email, formData.password);
+            const loggedInUser = await login(formData.email, formData.password);
             toast.success('Logged in successfully!');
-            navigate('/');
+            navigate(DASHBOARDS[loggedInUser?.role] || '/');
         } catch (error) {
             toast.error(error.response?.data?.message || 'Login failed. Please check your credentials.');
         }

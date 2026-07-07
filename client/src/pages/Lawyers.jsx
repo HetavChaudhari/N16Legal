@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import '../CSS/index.css';
@@ -10,22 +10,22 @@ const Lawyers = () => {
     const [specialization, setSpecialization] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchLawyers();
-    }, [searchTerm, specialization]);
-
-    const fetchLawyers = async () => {
+    const fetchLawyers = useCallback(async () => {
         try {
             let query = '/users/lawyers?';
             if (searchTerm) query += `keyword=${searchTerm}&`;
             if (specialization) query += `specialization=${specialization}`;
-            
+
             const res = await api.get(query);
             setLawyers(res.data);
         } catch (error) {
             console.error('Failed to fetch lawyers', error);
         }
-    };
+    }, [searchTerm, specialization]);
+
+    useEffect(() => {
+        fetchLawyers();
+    }, [fetchLawyers]);
 
     return (
         <div>

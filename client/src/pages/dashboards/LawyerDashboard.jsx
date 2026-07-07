@@ -2,15 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
+import StatusBadge from '../../components/StatusBadge';
+import NotificationBell from '../../components/NotificationBell';
+import { STATUSES } from '../../utils/status';
 import '../../CSS/Dashboard.css';
 
 const LawyerDashboard = () => {
     const { user, logout } = useContext(AuthContext);
     const [appointments, setAppointments] = useState([]);
-
-    useEffect(() => {
-        fetchAppointments();
-    }, []);
 
     const fetchAppointments = async () => {
         try {
@@ -21,19 +20,28 @@ const LawyerDashboard = () => {
         }
     };
 
-    const updateStatus = async (id, status) => {
+    useEffect(() => {
+        fetchAppointments();
+    }, []);
+
+    const updateStatus = async (id, status, reason) => {
         try {
-            await api.put(`/appointments/${id}/status`, { status });
+            await api.put(`/appointments/${id}/status`, { status, reason });
             toast.success(`Appointment ${status.toLowerCase()}!`);
             fetchAppointments();
         } catch (error) {
-            toast.error('Failed to update status');
+            toast.error(error.response?.data?.message || 'Failed to update status');
         }
     };
 
-    const pendingCount = appointments.filter(a => a.status === 'Pending').length;
-    const approvedCount = appointments.filter(a => a.status === 'Approved').length;
-    const completedCount = appointments.filter(a => a.status === 'Completed').length;
+    const declineAppointment = (id) => {
+        const reason = window.prompt('Reason for declining this appointment (optional):') || undefined;
+        updateStatus(id, STATUSES.REJECTED, reason);
+    };
+
+    const awaitingCount = appointments.filter(a => a.status === STATUSES.WAITING_LAWYER).length;
+    const confirmedCount = appointments.filter(a => a.status === STATUSES.CONFIRMED).length;
+    const completedCount = appointments.filter(a => a.status === STATUSES.COMPLETED).length;
 
     return (
         <div className="dashboard-container">
@@ -41,6 +49,7 @@ const LawyerDashboard = () => {
             <div className="dashboard-header">
                 <h1>⚖ Lawyer Dashboard</h1>
                 <div className="header-actions">
+                    <NotificationBell />
                     <button className="btn-outline" onClick={logout}>Logout</button>
                 </div>
             </div>
@@ -49,13 +58,13 @@ const LawyerDashboard = () => {
             <div className="stats-grid">
                 <div className="stat-card">
                     <div className="stat-icon">⏳</div>
-                    <div className="stat-label">Pending</div>
-                    <div className="stat-value">{pendingCount}</div>
+                    <div className="stat-label">Awaiting Confirmation</div>
+                    <div className="stat-value">{awaitingCount}</div>
                 </div>
                 <div className="stat-card">
                     <div className="stat-icon">✓</div>
-                    <div className="stat-label">Approved</div>
-                    <div className="stat-value">{approvedCount}</div>
+                    <div className="stat-label">Confirmed</div>
+                    <div className="stat-value">{confirmedCount}</div>
                 </div>
                 <div className="stat-card">
                     <div className="stat-icon">✔</div>
@@ -128,19 +137,17 @@ const LawyerDashboard = () => {
                                             <td>{app.client?.name || app.guestName}</td>
                                             <td>{app.caseType}</td>
                                             <td>
-                                                <span className={`status-badge status-${app.status.toLowerCase()}`}>
-                                                    {app.status}
-                                                </span>
+                                                <StatusBadge status={app.status} />
                                             </td>
                                             <td>
-                                                {app.status === 'Pending' && (
+                                                {app.status === STATUSES.WAITING_LAWYER && (
                                                     <>
-                                                        <button className="action-btn action-btn-approve" onClick={() => updateStatus(app._id, 'Approved')}>✓ Approve</button>
-                                                        <button className="action-btn action-btn-reject" onClick={() => updateStatus(app._id, 'Rejected')}>✕ Reject</button>
+                                                        <button className="action-btn action-btn-approve" onClick={() => updateStatus(app._id, STATUSES.CONFIRMED)}>✓ Confirm</button>
+                                                        <button className="action-btn action-btn-reject" onClick={() => declineAppointment(app._id)}>✕ Decline</button>
                                                     </>
                                                 )}
-                                                {app.status === 'Approved' && (
-                                                    <button className="action-btn action-btn-complete" onClick={() => updateStatus(app._id, 'Completed')}>✔ Mark Done</button>
+                                                {app.status === STATUSES.CONFIRMED && (
+                                                    <button className="action-btn action-btn-complete" onClick={() => updateStatus(app._id, STATUSES.COMPLETED)}>✔ Mark Done</button>
                                                 )}
                                             </td>
                                         </tr>

@@ -16,27 +16,27 @@ const protect = async (req, res, next) => {
             return res.status(401).json({ message: 'Not authorized, user not found' });
         }
 
+        // Block suspended/inactive accounts even with a valid token
+        if (req.user.status && req.user.status !== 'active') {
+            return res.status(403).json({ message: 'Account is not active' });
+        }
+
         next();
     } catch (error) {
-        console.error(error.message);
         return res.status(401).json({ message: 'Not authorized, token failed' });
     }
 };
 
-const admin = (req, res, next) => {
-    if (req.user && req.user.role === 'admin') {
-        next();
-    } else {
-        res.status(401).json({ message: 'Not authorized as an admin' });
+// Generic role guard: authorize('admin', 'receptionist')
+const authorize = (...roles) => (req, res, next) => {
+    if (req.user && roles.includes(req.user.role)) {
+        return next();
     }
+    return res.status(403).json({ message: `Not authorized. Requires role: ${roles.join(' or ')}` });
 };
 
-const lawyer = (req, res, next) => {
-    if (req.user && req.user.role === 'lawyer') {
-        next();
-    } else {
-        res.status(401).json({ message: 'Not authorized as a lawyer' });
-    }
-};
+const admin = authorize('admin');
+const lawyer = authorize('lawyer');
+const receptionist = authorize('receptionist', 'admin');
 
-module.exports = { protect, admin, lawyer };
+module.exports = { protect, authorize, admin, lawyer, receptionist };

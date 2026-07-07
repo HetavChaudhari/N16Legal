@@ -24,6 +24,7 @@ const Navbar = () => {
         if (!user) return;
         if (user.role === 'admin') navigate('/dashboard/admin');
         else if (user.role === 'lawyer') navigate('/dashboard/lawyer');
+        else if (user.role === 'receptionist') navigate('/dashboard/receptionist');
         else navigate('/dashboard/client');
     };
 

@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
         // dashboards render correctly without a page refresh
         const profile = await api.get('/users/profile');
         setUser(profile.data);
+        return profile.data;
     };
 
     const register = async (userData) => {
@@ -38,6 +39,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('token', res.data.token);
         const profile = await api.get('/users/profile');
         setUser(profile.data);
+        return profile.data;
     };
 
     const logout = () => {

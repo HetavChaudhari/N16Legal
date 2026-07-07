@@ -13,10 +13,6 @@ const AdminDashboard = () => {
         name: '', email: '', password: '', phone: '', specialization: '', experience: '', education: '', consultationFee: ''
     });
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-
     const fetchData = async () => {
         try {
             const [statsRes, lawyersRes] = await Promise.all([
@@ -29,6 +25,10 @@ const AdminDashboard = () => {
             toast.error('Failed to load admin data');
         }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const verifyLawyer = async (id) => {
         try {
